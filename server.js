@@ -2,6 +2,7 @@ var http = require("http");
 var Firebase = require("firebase");
 var qs = require('querystring');
 var dbref = new Firebase('https://scorching-inferno-7288.firebaseio.com/');
+var fs = require('fs');
 
 console.log("server started");
 
@@ -22,16 +23,21 @@ http.createServer(function (request, response) {
         request.on('end', function () {
             var post = qs.parse(body);
             // use post['blah'], etc.
-            console.log(request);
+            console.log(post);
             dbref.set(post);
         });
     }
     if (request.method == 'GET') {
-        var body = 'the thing works';
-        response.writeHead(200, {'Content-Type': 'text/html','Content-Length':body.length});
-        response.write(body);
-        response.end();
+        fs.readFile('./post.html', function (err, html) {
+            if (err) {
+                throw err;
+            }
+            response.writeHeader(200, {"Content-Type": "text/html"});  
+            response.write(html);  
+            response.end();
+
         console.log("GET response happened");
+        });
     }
 }
 ).listen(process.env.PORT || 3000);
