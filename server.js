@@ -19,11 +19,13 @@ http.createServer(function (request, response) {
         request.on('end', function () {
             //var post = qs.parse(body);
             
+            body_trimmed = body.substring(3, body.length-7)
+            
             //request ended -> do something with the data
             response.writeHead(200, "OK", {'Content-Type': 'text/html'});
             
             //parse the received body data
-            var decodedBody = qs.parse(body);
+            var decodedBody = qs.parse(body_trimmed);
             
             //output the decoded data to the HTTP response
             console.log(util.inspect(decodedBody));
