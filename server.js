@@ -21,14 +21,21 @@ http.createServer(function (request, response) {
         });
 
         request.on('end', function () {
-            var post = qs.parse(body);
-            // use post['blah'], etc.
-            console.log(post);
-            dbref.set(post);
+            //var post = qs.parse(body);
+            var temp;
+            fs.readFile('./json', function (err, data) {
+                if (err) {
+                    throw err;
+                }
+                temp = data;
+            });
+            var post = temp.parse(request.url.split("?")[1]);
+            console.log(post.trigger.properties.name);
+            dbref.set(post.trigger.properties.name);
         });
     }
     if (request.method == 'GET') {
-/*        fs.readFile('./post.html', function (err, html) {
+        fs.readFile('./post.html', function (err, html) {
             if (err) {
                 throw err;
             } 
@@ -37,7 +44,7 @@ http.createServer(function (request, response) {
             response.end();
 
         console.log("GET response happened");
-        });*/
+        });
     }
 }
 ).listen(process.env.PORT || 3000);
