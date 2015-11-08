@@ -4,7 +4,7 @@ var qs = require('querystring');
 var dbref = new Firebase('https://scorching-inferno-7288.firebaseio.com/');
 
 console.log("server started");
-
+/*
 http.createServer(function (request, response) {
     if (request.method == 'POST') {
         console.log("POST reached");
@@ -32,3 +32,19 @@ http.createServer(function (request, response) {
     }
 }
 ).listen(80);
+*/
+
+const port=8080;
+function handleRequest(request, response) {
+    response.end("It works! Path Hit: " + request.url);
+    console.log("It works! Path Hit: " + request.url);
+}
+
+//create the server
+var server = http.createServer(handleRequest);
+
+//start the server
+server.listen(port, function(){
+    //callback triggered when server is successfully listening
+    console.log("Server listening on http://localhost:%s", port);
+});
