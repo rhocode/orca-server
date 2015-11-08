@@ -28,7 +28,9 @@ http.createServer(function (request, response) {
     }
     if (request.method == 'GET') {
         var body = '';
-        console.log("GET reached");
+        response.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+        response.write("the thing works");
+        response.end();
     }
 }
 ).listen(process.env.PORT || 3000);
