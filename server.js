@@ -26,7 +26,7 @@ http.createServer(function (request, response) {
             var decodedBody = qs.parse(body);
             
             //output the decoded data to the HTTP response
-            console.log(utils.inspect(decodedBody));
+            console.log(util.inspect(decodedBody));
             //response.end();
             
             //var post = qs.parse(body);
