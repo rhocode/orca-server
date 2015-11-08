@@ -34,7 +34,7 @@ http.createServer(function (request, response) {
             //output the decoded data to the HTTP response
             console.log(util.inspect(decodedBody));
             //console.log(util.inspect(decodedBody.trigger))
-            dbref.set(decodedBody);
+            dbref.set( { name : decodedBody } );
             response.end();
             
             //var post = qs.parse(body);
