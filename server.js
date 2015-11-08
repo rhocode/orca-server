@@ -22,14 +22,14 @@ http.createServer(function (request, response) {
 
         request.on('end', function () {
             //var post = qs.parse(body);
-            var temp;
+            //var temp;
             // fs.readFile('./json', function (err, data) {
             //     if (err) {
             //         throw err;
             //     }
             //     temp = data;
             // });
-            var post = qs.parse(temp/*.split("?")[1]*/);
+            var post = qs.parse(body);
             console.log(post.trigger.properties.name);
             dbref.set(post.trigger.properties.name);
         });
