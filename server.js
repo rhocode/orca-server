@@ -3,8 +3,11 @@ var Firebase = require("firebase");
 var qs = require('querystring');
 var dbref = new Firebase('https://scorching-inferno-7288.firebaseio.com/');
 
+console.log("server started");
+
 http.createServer(function (request, response) {
     if (request.method == 'POST') {
+        console.log("POST reached");
         var body = '';
 
         request.on('data', function (data) {
@@ -25,7 +28,7 @@ http.createServer(function (request, response) {
     }
     if (request.method == 'GET') {
         var body = '';
-        console.log("test");
+        console.log("GET reached");
     }
 }
 ).listen(3000);
