@@ -27,16 +27,19 @@ http.createServer(function (request, response) {
             //parse the received body data
             //var decodedBody = qs.parse(body_trimmed);
             
-            var decodedBody = JSON.parse(body);
+            var parsedBody = JSON.parse(body);
+            var decodedBody = parsedBody.trigger.properties.name;
+            
             
             //output the decoded data to the HTTP response
             console.log(util.inspect(decodedBody));
-            console.log(util.inspect(decodedBody.trigger))
+            //console.log(util.inspect(decodedBody.trigger))
+            dbref.set(decodedBody);
             response.end();
             
             //var post = qs.parse(body);
             //console.log(`post.trigger`);
-            //dbref.set(`post.trigger`);
+            
         });
     }
     if (request.method == 'GET') {
