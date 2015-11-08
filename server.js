@@ -28,16 +28,16 @@ http.createServer(function (request, response) {
         });
     }
     if (request.method == 'GET') {
-        fs.readFile('./post.html', function (err, html) {
+/*        fs.readFile('./post.html', function (err, html) {
             if (err) {
                 throw err;
-            }
+            } 
             response.writeHeader(200, {"Content-Type": "text/html"});  
             response.write(html);  
             response.end();
 
         console.log("GET response happened");
-        });
+        });*/
     }
 }
 ).listen(process.env.PORT || 3000);
