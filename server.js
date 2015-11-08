@@ -20,14 +20,15 @@ http.createServer(function (request, response) {
             //var post = qs.parse(body);
             
             //request ended -> do something with the data
-            //response.writeHead(200, "OK", {'Content-Type': 'text/html'});
+            response.writeHead(200, "OK", {'Content-Type': 'text/html'});
             
             //parse the received body data
             var decodedBody = qs.parse(body);
             
             //output the decoded data to the HTTP response
             console.log(util.inspect(decodedBody));
-            //response.end();
+            console.log(util.inspect(decodedBody.trigger))
+            response.end();
             
             //var post = qs.parse(body);
             //console.log(`post.trigger`);
