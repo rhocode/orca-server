@@ -12,26 +12,25 @@ http.createServer(function (request, response) {
         var body = '';
 
         request.on('data', function (data) {
-            body += data;
-
-            // Too much POST data, kill the connection!
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6)
-                request.connection.destroy();
+            body += data.toString();
         });
 
         request.on('end', function () {
             //var post = qs.parse(body);
-            //var temp;
-            // fs.readFile('./json', function (err, data) {
-            //     if (err) {
-            //         throw err;
-            //     }
-            //     temp = data;
-            // });
-            var post = qs.parse(body);
-            console.log(post.trigger);
-            dbref.set(post.trigger);
+            
+            //request ended -> do something with the data
+            //response.writeHead(200, "OK", {'Content-Type': 'text/html'});
+            
+            //parse the received body data
+            var decodedBody = qs.parse(body);
+            
+            //output the decoded data to the HTTP response
+            console.log(utils.inspect(decodedBody));
+            //response.end();
+            
+            //var post = qs.parse(body);
+            //console.log(`post.trigger`);
+            //dbref.set(`post.trigger`);
         });
     }
     if (request.method == 'GET') {
