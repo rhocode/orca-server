@@ -22,14 +22,14 @@ http.createServer(function (request, response) {
 
         request.on('end', function () {
             //var post = qs.parse(body);
-            var temp;
-            fs.readFile('./json', function (err, data) {
-                if (err) {
-                    throw err;
-                }
-                temp = data;
-            });
-            var post = temp.parse(request.url.split("?")[1]);
+            //var temp;
+            // fs.readFile('./json', function (err, data) {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     temp = data;
+            // });
+            var post = qs.parse(temp/*.split("?")[1]*/);
             console.log(post.trigger.properties.name);
             dbref.set(post.trigger.properties.name);
         });
@@ -42,7 +42,6 @@ http.createServer(function (request, response) {
             response.writeHeader(200, {"Content-Type": "text/html"});  
             response.write(html);  
             response.end();
-
         console.log("GET response happened");
         });
     }
