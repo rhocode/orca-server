@@ -27,10 +27,11 @@ http.createServer(function (request, response) {
         });
     }
     if (request.method == 'GET') {
-        var body = '';
-        response.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
-        response.write("the thing works");
+        var body = 'the thing works';
+        response.writeHead(200, {'Content-Type': 'text/html','Content-Length':body.length});
+        response.write(body);
         response.end();
+        console.log("GET response happened");
     }
 }
 ).listen(process.env.PORT || 3000);
