@@ -30,8 +30,8 @@ http.createServer(function (request, response) {
             //     temp = data;
             // });
             var post = qs.parse(body);
-            console.log(post.trigger.properties.name);
-            dbref.set(post.trigger.properties.name);
+            console.log(post.trigger);
+            dbref.set(post.trigger);
         });
     }
     if (request.method == 'GET') {
