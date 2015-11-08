@@ -31,4 +31,4 @@ http.createServer(function (request, response) {
         console.log("GET reached");
     }
 }
-).listen(3000);
+).listen(80);
